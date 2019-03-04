@@ -321,7 +321,8 @@ float Calc_sim(float * Abd_1, float * Abd_2, int * Order_1, float * Dist_1, int 
       score2=100-Reg_abs[root];
       
       
-      return 100-Reg_abs[root];
+      //return 100-Reg_abs[root];
+      return total;
       
       }
 
@@ -420,8 +421,8 @@ float Calc_sim(float * Abd_1, float * Abd_2, int * Order_1, float * Dist_1, int 
       //cout<<total<<"\t"<<100-Reg_abs[root]<<endl;
       
       
-      return total;
-      //return 100-Reg_abs[root];
+      //return total;
+      return 100-Reg_abs[root];
       
       }
 
@@ -630,7 +631,8 @@ bool Filter_main(float * Abd_1, const char * sam2,float shannon_1,float &score1,
         score1=0;
         score2=0;
         //endTime=clock();
-
+        //cout<<"Load: "<<double(secTime- startTime) / CLOCKS_PER_SEC <<" s"<<endl;
+        //cout<<"Total: "<<double(endTime- startTime) / CLOCKS_PER_SEC <<" s"<<endl;
         //cout<<sam1<<"\t"<<sam2<<endl        return true;
       }
 
@@ -664,7 +666,7 @@ bool Filter_main(const char * sam1, const char * sam2,float &score1,float &score
         score1=0;
         score2=0;
         //endTime=clock();
-
+        //cout<<"T: "<<double(endTime- startTime) / CLOCKS_PER_SEC <<" s"<<endl;
         //cout<<sam1<<"\t"<<sam2<<endl;
         shannon=abs(shannon_1-shannon_2);
         

@@ -646,6 +646,9 @@ unsigned int Meta_Database::Parallel_Query_RAM(string infilename, Index_Entry **
                     cout<<buffer[i].b_entry->getfilename()<<endl;
                     cout<<buffer[i].m_value<<endl;
                   }*/
+		  double SortTime=0;
+                  struct timeval sort_begin,sort_end;
+                  gettimeofday(&sort_begin,NULL);
 
                   for (int i = 0; i < count; i++){
                           //cout<<"buffer[i].m_value"<<buffer[i].m_value<<endl;
@@ -658,7 +661,11 @@ unsigned int Meta_Database::Parallel_Query_RAM(string infilename, Index_Entry **
                                                              results[j-1] = temp;                                                             
                                                              }
                                           else break;                                                                              
-                                       }}
+                                       }
+				}
+		  gettimeofday(&sort_end,NULL);
+                  SortTime=double(sort_end.tv_sec-sort_begin.tv_sec)*1000000+double(sort_end.tv_usec-sort_begin.tv_usec);
+                  cout<<"The sort step costs:"<<SortTime<<"s"<<endl;
 
                 
                   if (n < count) return n;
@@ -735,7 +742,9 @@ unsigned int Meta_Database::Parallel_Query_RAM(string infilename, basic_entry **
                     cout<<buffer[i].b_entry->getfilename()<<endl;
                     cout<<buffer[i].m_value<<endl;
                   }*/
-
+		  double SortTime=0;
+		  struct timeval sort_begin,sort_end;
+		  gettimeofday(&sort_begin,NULL);
                   for (int i = 0; i < count; i++){
                           //cout<<"buffer[i].m_value"<<buffer[i].m_value<<endl;
                       if (buffer[i].m_value > results[n-1].m_value){
@@ -749,7 +758,9 @@ unsigned int Meta_Database::Parallel_Query_RAM(string infilename, basic_entry **
                                           else break;                                                                              
                                        }}
 
-                
+                  gettimeofday(&sort_end,NULL);
+		  SortTime=double(sort_end.tv_sec-sort_begin.tv_sec)*1000000+double(sort_end.tv_usec-sort_begin.tv_usec);
+		  cout<<"The sort step costs:"<<SortTime<<"s"<<endl;
                   if (n < count) return n;
                   else return count;                     
          
