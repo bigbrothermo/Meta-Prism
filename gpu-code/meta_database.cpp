@@ -625,12 +625,13 @@ unsigned int Meta_Database::GPU_Parallel_Query_RAM(string infilename, basic_entr
                   //abd1->data=database_map[infilename];
 
 
-
-
                    // for gpu 1.0 version 
                   
                   abd1[0].name=infilename;
-                  memcpy(abd1->data,database_map[infilename],sizeof(float)*LeafN);
+                  float t_abd[LeafN];
+                  Load_abd(infilename.c_str(),Id,t_abd);
+
+                  memcpy(abd1->data,t_abd,sizeof(float)*LeafN);
               
 
                   //abd1->name=infilename
@@ -736,7 +737,7 @@ unsigned int Meta_Database::GPU_Parallel_Query_RAM(string infilename, basic_entr
 
 
                   for(int i=0;i<count;i++){
-                      //cout<<result_score[i]<<endl;
+                      cout<<result_score[i]<<' '<<i<<endl;
 
                       buffer[i].b_entry=list[i];
                       buffer[i].m_value=result_score[i];

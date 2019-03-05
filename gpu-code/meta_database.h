@@ -21,7 +21,7 @@
 //#include "tree_class.h"
 #include "cfn.h"
 #include "comp.h"
-#include "gpu_compare3.0.cu"
+#include "gpu_compare16.cu"
 //#include "gpu_compare1.0.cu"
 
 #ifndef META_DATABASE_H
@@ -130,7 +130,7 @@ class Meta_Database{
                            this->Entry_count = 0;
                            this->Entry_number = 0;
                            this->Abundance = 0;    
-                           gpu_step.initial_gpu(gpulist,count);
+                           //gpu_step.initial_gpu(gpulist,count);
                            this->Load_Index(infilename,biotype);
                             }                       
 
